@@ -26,3 +26,19 @@ print("Your mission is to find the treasure.")
 # https://www.draw.io/?lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=Treasure%20Island%20Conditional.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1oDe4ehjWZipYRsVfeAx2HyB7LCQ8_Fvi%26export%3Ddownload
 
 # Write your code below this line 👇
+dir = input("Which direction you want to go? ").lower()
+
+if (dir == "right"):
+    print("Game Over. You are eaten by a terrible monster.")
+else:
+    lake = input(
+        "You reached the lake. You have two choices. Wait for boat to cross the lake? or Swim through the lake? ").lower()
+    if (lake == "wait"):
+        door = input("Mysterius man carry an old boat. He take you to the island of middle of lake. In the island, you found three doors of different color. One with blue and one with red, and another one with yellow. You might have to open one of these doors. Which color of door you want to open? ").lower()
+        if (door == "red"):
+            print("You opened red door. Red flame come out from the door. Game Over.")
+        elif (door == "blue"):
+            print(
+                "You opend the blue door. Tons of water come out from the door. Game Over.")
+        else:
+            print("You opened the yellow door. Tons of gold come out from the door. You are dead. But you have found the treasure! You Win!.")
