@@ -3,22 +3,26 @@ from turtle import *
 import random as r
 
 timmy = Turtle()
-timmy.shape("turtle")
 
 turtle.colormode(255)
 
 
 def timmy_color():
-    timmy.color(r.randint(0, 255), r.randint(0, 255), r.randint(0, 255))
+    rgb = (r.randint(0, 255), r.randint(0, 255), r.randint(0, 255))
+    return rgb
 
 
-def timmy_randwalk():
-    timmy_color()
-    timmy.right(90 * r.randint(0, 3))
-    timmy.forward(50)
-    timmy_randwalk()
+
+def timmy_spirograph(gap):
+    for i in range(int(360 / gap)):
+        timmy.color(timmy_color())
+        timmy.circle(100)
+        timmy.setheading(timmy.heading() + gap)
 
 
-timmy_randwalk()
+timmy.speed(0)
+degree_sum = 0
 
+
+timmy_spirograph(5)
 Screen().exitonclick()
