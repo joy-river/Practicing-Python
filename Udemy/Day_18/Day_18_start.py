@@ -12,7 +12,6 @@ def timmy_color():
     return rgb
 
 
-
 def timmy_spirograph(gap):
     for i in range(int(360 / gap)):
         timmy.color(timmy_color())
@@ -22,7 +21,6 @@ def timmy_spirograph(gap):
 
 timmy.speed(0)
 degree_sum = 0
-
 
 timmy_spirograph(5)
 Screen().exitonclick()
