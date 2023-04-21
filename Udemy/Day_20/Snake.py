@@ -11,18 +11,17 @@ class Snake:
         head.shapesize(square_size, square_size)
         head.color("white")
         head.penup()
-        tail = head
         self.snake.append(head)
 
         for i in range(2):
-            tail = self.make_snake(tail)
-            self.snake.append(tail)
+            self.make_snake()
 
-    def make_snake(self, tail):
+    def make_snake(self):
         temp = Turtle("square")
         temp.shapesize(self.square_size, self.square_size)
         temp.color("white")
         temp.penup()
+        tail = self.snake[len(self.snake) - 1]
 
         xcor = tail.xcor()
         ycor = tail.ycor()
@@ -33,10 +32,10 @@ class Snake:
             ycor += int((tail.heading() - 180) / 90) * 20 * self.square_size
 
         temp.setpos(xcor, ycor)
-        return temp
+        self.snake.append(temp)
 
     def snake_move(self):
-        time.sleep(0.05)
+        time.sleep(0.1)
         for i in range(len(self.snake) - 1, 0, -1):
             self.snake[i].setpos(self.snake[i - 1].pos())
         self.snake[0].forward(20 * self.square_size)
