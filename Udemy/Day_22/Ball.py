@@ -12,10 +12,11 @@ class Ball (Turtle):
         self.setpos(0, 0)
         self.x_moment = 10
         self.y_moment = 10
+        self.sleeptime = 0.1
 
     def ball_move(self):
         self.setx(self.xcor() + self.x_moment)
         self.sety(self.ycor() + self.y_moment)
-        time.sleep(0.05)
+        time.sleep(self.sleeptime)
 
 
