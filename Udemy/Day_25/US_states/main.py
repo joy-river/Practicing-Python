@@ -3,7 +3,6 @@ import turtle
 
 font = ('Arial', 8, 'normal')
 
-
 def get_mouse_click_coor(x, y):
     print(x, y)
 
@@ -17,15 +16,21 @@ states_list = data.state.to_list()
 
 screen.addshape(states_img)
 turtle.shape(states_img)
+guessed_list = []
 
-while True:
-    user_guess = screen.textinput(title="Guess the states", prompt="Which states in here??")
+while len(guessed_list) < 50:
+    user_guess = screen.textinput(title=f"{len(guessed_list)} / 50 guessed. Guess the states", prompt="Which states in here??").title()
+
+    if user_guess == "Exit":
+        homework = [item for item in states_list if item not in guessed_list]
+        break
 
     if user_guess in states_list:
+        guessed_list.append(user_guess)
         state = data[data.state == user_guess]
-        print(state)
         state_turtle = turtle.Turtle()
+        state_turtle.penup()
         state_turtle.goto(int(state.x), int(state.y))
         state_turtle.write(user_guess, font=font)
 
-turtle.mainloop()
+pd.DataFrame(homework).to_csv("a.csv")
