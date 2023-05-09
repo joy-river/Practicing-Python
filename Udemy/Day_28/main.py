@@ -12,7 +12,7 @@ WORK_MIN = 25
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 reps = 0
-
+running_timer = ""
 
 # ---------------------------- TIMER RESET ------------------------------- #
 
@@ -34,30 +34,34 @@ def start_timer():
         label_Timer.config(text="Get your ass back to work.", fg=RED)
 
 
-
 def countdown(count):
+    global running_timer
     if count > 0:
         count_min = int(count / 60)
         count_sec = count % 60
         if count_min < 10:
-         count_min = f"0{count_min}"
+            count_min = f"0{count_min}"
         if count_sec < 10:
-          count_sec = f"0{count_sec}"
+            count_sec = f"0{count_sec}"
         canvas.itemconfig(text, text=f"{count_min}:{count_sec}")
-        window.after(1000, countdown, count - 1)
+        running_timer = window.after(1000, countdown, count - 1)
     else:
         start_timer()
         if reps % 2 == 0:
+            check_marks = ""
+            for _ in range(int(reps / 2)):
+                check_marks += "✓"
+            label_check.config(text=check_marks)
 
 
-            label_check.config(text="✓")
-
-
-
-
-def pressed_reset():
-    pass
-
+def reset_timer():
+    """#reset timer, label_timer, checkmarks"""
+    window.after_cancel(running_timer)
+    global reps
+    reps = 0
+    canvas.itemconfig(text, text="00:00")
+    label_check.config(text="")
+    label_Timer.config(fg=GREEN, bg=YELLOW, text="Timer", font=(FONT_NAME, 40))
 
 # ---------------------------- UI SETUP ------------------------------- #
 # ---------------------------- UI SETUP ------------------------------- #
@@ -74,7 +78,7 @@ button_start = Button()
 button_reset = Button()
 
 button_start.config(fg="black", bg=YELLOW, text="Start", command=start_timer)
-button_reset.config(fg="black", bg=YELLOW, text="Reset", command=start_timer)
+button_reset.config(fg="black", bg=YELLOW, text="Reset", command=reset_timer)
 
 button_start.grid(row=2, column=0)
 button_reset.grid(row=2, column=2)
