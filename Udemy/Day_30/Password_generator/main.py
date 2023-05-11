@@ -1,4 +1,5 @@
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
+import json
 from tkinter import *
 from tkinter import messagebox
 import random
@@ -39,21 +40,49 @@ def add():
     website = input_website.get()
     email = input_email.get()
     password = input_password.get()
-    str_tosave = website + "   |   " + email + "  |   " + password + "\n"
+
+    pass_dict = {
+        website: {
+            "email": email,
+            "password": password
+        }
+    }
+
     box = messagebox
     is_valid = len(website) > 0 and len(email) > 0 and len(password)
 
     if is_valid:
+        input_website.delete(0, END)
+        input_password.delete(0, END)
+        try:
+            with open(file="saved_password.json", mode="r") as file:
+                load_data = json.load(file)
+                load_data.update(pass_dict)
+        except:
+            load_data = pass_dict
+        finally:
+            with open(file="saved_password.json", mode="w") as file:
+                json.dump(load_data, file , indent=4)
 
-        ok = box.askokcancel(title="Are you sure?", message=f"Your password will be saved like this:\n{str_tosave}")
-
-        if ok:
-            input_website.delete(0, END)
-            input_password.delete(0, END)
-            with open(file="saved_password.txt", mode="a") as file:
-                file.write(str_tosave)
     else:
         box.showinfo(title="Invalid data", message="One or more of your data is Empty.\nPlease fill up all boxes.")
+
+
+# ---------------------------- Search Password ------------------------------- #
+def search_password():
+    website = input_website.get()
+    box = messagebox
+    try:
+        with open(file="saved_password.json", mode="r") as file:
+            load_data = json.load(file)
+        try:
+            load_email = load_data[website]["email"]
+            load_password = load_data[website]["password"]
+            box.showinfo(title="Load Successful", message=f"Email/Password in {website} is\nEmail: {load_email}\nPassword: {load_password}")
+        except KeyError:
+            box.showinfo(title="Load Failed.", message= f"There is no Password in {website}.")
+    except FileExistsError:
+        box.showinfo(title="Load Failed.", message= f"There is no Password in {website}.")
 
 
 # ---------------------------- UI SETUP ------------------------------- #
@@ -72,8 +101,8 @@ Label(text="Website:").grid(row=1, column=0)
 Label(text="Email/Username:").grid(row=2, column=0)
 Label(text="Password:").grid(row=3, column=0)
 
-input_website = Entry(width=35)
-input_website.grid(row=1, column=1, columnspan=2)
+input_website = Entry(width=19)
+input_website.grid(row=1, column=1)
 input_website.focus()
 input_email = Entry(width=35)
 input_email.grid(row=2, column=1, columnspan=2)
@@ -81,6 +110,7 @@ input_email.insert(0, "dlrkd1122@gmail.com")
 input_password = Entry(width=19)
 input_password.grid(row=3, column=1)
 
+Button(width=15, text="Search", command=search_password).grid(row=1, column=2)
 Button(text="Generate Password", command=generate_password).grid(row=3, column=2)
 Button(width=36, text="Add", command=add).grid(row=4, column=1, columnspan=2)
 
