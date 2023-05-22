@@ -3,7 +3,9 @@ YJ_lon = 128.62
 YJ_lat = 36.80
 # weather id < 700 : bring umb.
 
+import os
 import requests
+from twilio.rest import Client
 
 parameter = {
     "lat": YJ_lat,
@@ -15,9 +17,21 @@ weather = requests.get(url="https://api.openweathermap.org/data/2.5/forecast", p
 weather.raise_for_status()
 data_list = weather.json()["list"]
 
-rain = [item["weather"] for item in data_list[: 12]]
+rain = [item["weather"][0] for item in data_list[: 12]]
+rain_today = False
+for i in rain:
+    if i["id"] < 700:
+        rain_today = True
 
-for weathers in rain:
-    for ids in weathers:
-        if ids["id"] > 800:
-            print("Bring an umbrella.")
+account_sid = os.environ.get("twilio_account_sid")
+auth_token = os.environ.get("twilio_auth_token")
+client = Client(account_sid, auth_token)
+
+if rain_today:
+    message = client.messages \
+        .create(
+        body="Today is rainy day. Bring an umbrella!",
+        from_='+12543584761',
+        to='+821098299803'
+    )
+    print(message.status)
