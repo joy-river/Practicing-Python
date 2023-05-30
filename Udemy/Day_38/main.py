@@ -2,8 +2,8 @@ import os
 import requests
 from datetime import datetime
 
-nut_api_id = "d028dcfa"
-nut_api_key = "52c470f7feabb9963a54edd3f1ea6472"
+nut_api_id = os.environ.get("nut_api_id")
+nut_api_key = os.environ.get("nut_api_key")
 nut_api_url = "https://trackapi.nutritionix.com/v2/natural/exercise"
 
 nut_header = {
