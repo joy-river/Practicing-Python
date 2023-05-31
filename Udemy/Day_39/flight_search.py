@@ -1,4 +1,5 @@
 import requests
+from flight_data import FlightData
 from datetime import datetime, timedelta
 
 class FlightSearch:
@@ -7,11 +8,16 @@ class FlightSearch:
         self.kiwi_city_url = "https://api.tequila.kiwi.com/locations/query"
         self.kiwi_flight_url = "https://api.tequila.kiwi.com/v2/search"
         self.tomorrow = datetime.now() + timedelta(days = 1)
+        self.six_month = datetime.now() + timedelta(days= 180)
         self.flight_body = {
             "fly_from": "LON",
             "fly_to": "",
-            "date_from": self.now.strftime("%d/%m/%Y"),
-            "date_to": self.now.strftime("%M")
+            "date_from": self.tomorrow.strftime("%d/%m/%Y"),
+            "date_to": self.six_month.strftime("%d/%m/%Y"),
+            "nights_in_dst_from" : 7,
+            "nights_in_dst_to" : 28,
+            "curr" : "GBP",
+            "limit" : 1
         }
         self.kiwi_key = {
             "apikey" : "WFuwp-_IqIVvOulwzyIt8Xwm2DJo4KkQ"
@@ -25,4 +31,10 @@ class FlightSearch:
         return city_codes
 
     def search_flight(self, city_data):
+        datas = []
+        for data in city_data:
+            self.flight_body["fly_to"] = data["iataCode"]
+            data = requests.get(url=self.kiwi_flight_url, params= self.flight_body, headers= self.kiwi_key).json()
+            datas.append(FlightData(data['data'][0]))
+        return datas
 

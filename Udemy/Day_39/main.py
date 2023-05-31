@@ -9,11 +9,14 @@ from datetime import datetime
 
 dm = DataManager()
 fs = FlightSearch()
-fd = FlightData()
 nm = NotificationManager()
 
 a = [item for item in dm.city_data if item["iataCode"] == ""]
-dm.put_codes(fs.search_city_code(a))
+if len(a) > 0:
+    dm.put_codes(fs.search_city_code(a))
+    dm.get_city_data()
 
-dm.get_city_data()
-fs.search_flight(dm.city_data)
+flight_datas = fs.search_flight(dm.city_data)
+
+for data in flight_datas:
+    print(f"{data.cityTo}-{data.cityCodeTo} : ${data.price}")

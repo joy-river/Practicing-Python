@@ -1,58 +1,153 @@
 {
-  "prices": [
+  'search_id': '70c1230b-805d-cf4f-cbd7-4ecffca337d9',
+  'currency': 'GBP',
+  'fx_rate': 0.864502,
+  'data': [
     {
-      "city": "Paris",
-      'iataCode': '',
-      'lowestPrice': 54,
-      'id': 2
-    },
-    {
-      'city': 'Berlin',
-      'iataCode': '',
-      'lowestPrice': 42,
-      'id': 3
-    },
-    {
-      'city': 'Tokyo',
-      'iataCode': '',
-      'lowestPrice': 485,
-      'id': 4
-    },
-    {
-      'city': 'Sydney',
-      'iataCode': '',
-      'lowestPrice': 551,
-      'id': 5
-    },
-    {
-      'city': 'Istanbul',
-      'iataCode': '',
-      'lowestPrice': 95,
-      'id': 6
-    },
-    {
-      'city': 'Kuala Lumpur',
-      'iataCode': '',
-      'lowestPrice': 414,
-      'id': 7
-    },
-    {
-      'city': 'New York',
-      'iataCode': '',
-      'lowestPrice': 240,
-      'id': 8
-    },
-    {
-      'city': 'San Francisco',
-      'iataCode': '',
-      'lowestPrice': 260,
-      'id': 9
-    },
-    {
-      'city': 'Cape Town',
-      'iataCode': '',
-      'lowestPrice': 378,
-      'id': 10
+      'id': '22f50a7c4c5b000018d8ed47_0|0a7c22f54c6e0000a206b274_0',
+      'flyFrom': 'LGW',
+      'flyTo': 'ORY',
+      'cityFrom': 'London',
+      'cityCodeFrom': 'LON',
+      'cityTo': 'Paris',
+      'cityCodeTo': 'PAR',
+      'countryFrom': {
+        'code': 'GB',
+        'name': 'United Kingdom'
+      },
+      'countryTo': {
+        'code': 'FR',
+        'name': 'France'
+      },
+      'nightsInDest': 19,
+      'quality': 110.423874,
+      'distance': 326.68,
+      'duration': {
+        'departure': 4800,
+        'return': 3900,
+        'total': 8700
+      },
+      'price': 58,
+      'conversion': {
+        'EUR': 67.090649,
+        'GBP': 58
+      },
+      'fare': {
+        'adults': 58,
+        'children': 58,
+        'infants': 58
+      },
+      'price_dropdown': {
+        'base_fare': 58,
+        'fees': 0
+      },
+      'bags_price': {
+        '1': 70.2
+      },
+      'baglimit': {
+        'hand_height': 40,
+        'hand_length': 55,
+        'hand_weight': 10,
+        'hand_width': 20,
+        'hold_dimensions_sum': 158,
+        'hold_height': 52,
+        'hold_length': 78,
+        'hold_weight': 20,
+        'hold_width': 28,
+        'personal_item_height': 30,
+        'personal_item_length': 40,
+        'personal_item_weight': 10,
+        'personal_item_width': 20
+      },
+      'availability': {
+        'seats': 1
+      },
+      'airlines': [
+        'VY'
+      ],
+      'route': [
+        {
+          'id': '22f50a7c4c5b000018d8ed47_0',
+          'combination_id': '22f50a7c4c5b000018d8ed47',
+          'flyFrom': 'LGW',
+          'flyTo': 'ORY',
+          'cityFrom': 'London',
+          'cityCodeFrom': 'LON',
+          'cityTo': 'Paris',
+          'cityCodeTo': 'PAR',
+          'airline': 'VY',
+          'flight_no': 8943,
+          'operating_carrier': 'VY',
+          'operating_flight_no': '8943',
+          'fare_basis': 'DFLASHB',
+          'fare_category': 'M',
+          'fare_classes': 'D',
+          'fare_family': '',
+          'return': 0,
+          'bags_recheck_required': False,
+          'vi_connection': False,
+          'guarantee': False,
+          'equipment': None,
+          'vehicle_type': 'aircraft',
+          'local_arrival': '2023-07-09T10:05:00.000Z',
+          'utc_arrival': '2023-07-09T08:05:00.000Z',
+          'local_departure': '2023-07-09T07:45:00.000Z',
+          'utc_departure': '2023-07-09T06:45:00.000Z'
+        },
+        {
+          'id': '0a7c22f54c6e0000a206b274_0',
+          'combination_id': '0a7c22f54c6e0000a206b274',
+          'flyFrom': 'ORY',
+          'flyTo': 'LGW',
+          'cityFrom': 'Paris',
+          'cityCodeFrom': 'PAR',
+          'cityTo': 'London',
+          'cityCodeTo': 'LON',
+          'airline': 'VY',
+          'flight_no': 8944,
+          'operating_carrier': 'VY',
+          'operating_flight_no': '8944',
+          'fare_basis': 'DFLASHB',
+          'fare_category': 'M',
+          'fare_classes': 'D',
+          'fare_family': '',
+          'return': 1,
+          'bags_recheck_required': False,
+          'vi_connection': False,
+          'guarantee': False,
+          'equipment': None,
+          'vehicle_type': 'aircraft',
+          'local_arrival': '2023-07-28T18:55:00.000Z',
+          'utc_arrival': '2023-07-28T17:55:00.000Z',
+          'local_departure': '2023-07-28T18:50:00.000Z',
+          'utc_departure': '2023-07-28T16:50:00.000Z'
+        }
+      ],
+      'booking_token': 'FX0pAHI416y7rIaAb3Kdny7T2euxbBv4HcqSXOTREHUvnL1UfxzjRw75Ee38gYOeAtK0146q0cO-v7apSm5m5tGzMbHD0H5dxxKrrrf9SRsZwmqBzFw1Zvazu6RAHFGJ2nOF-K8KOliqlP3ezgANw06WmK01bW8YQIv3p_Thlk3IW8G8z51YxgFM3QlE8NOXO7nwErBRQL9cz9oT23QBRFC4ajbRYEqI8tF8_mHdSb670tCsmuz1czLtrvvQOCQ7fdcNVpB_zksVM0DjiCwxxo5KRDHVcodE2-2SB04Gs6TqkPW_bafgaTUf6YPvLKuEukx-PhCW-j6oankrx5p3-5hoLXcdS05s78HwHzJzsU8sf7_P4E3nYcjNLTGSFh9HWi0c-7HRCA_k-nCO-TyuZYk_jC-RxHUyhFiBXNaljlXrPN9c1sAdL8YbLFVJsJnRCKvZVC6dVoHOHn2FTySvr8XYK5RXVYxwysj5WRyRnF1jl7dCzcufYcdtyEn5TrgaU6C-Wc-kX2Pb-bgngjmmheaGB3n8Dw1KP2J6sJG2sQ2oHbhzHACPm60Rtzk_8Yf3y5BfPs3KYaZaCQ8aDXRSWO7YYFxCBNz9aUQ7R1lvyfQqeuhL7BZcg7QKqe6G71_MEzj6hDphFzmiaRt2HMrACgqYxNOVT9Y32qrVepYNXgu5qStJEU3LQFFflCRl_XzJmcrDfen_DAklc6R2JZ1BGG_b04hYQbwpyZLXDvTPFnVUDsQETMAG4rDjfu7ikaJ-p0LNBcemXO1QganH4nqGhwnomTtolX4bxlswOeFAmpif8XaCcWPCJ5OIQSEQ_AdfAYT--R566kN2CAZwIQn9A52L4OsHmBqJBdyuKW2naAVE=',
+      'facilitated_booking_available': True,
+      'pnr_count': 2,
+      'has_airport_change': False,
+      'technical_stops': 0,
+      'throw_away_ticketing': False,
+      'hidden_city_ticketing': False,
+      'virtual_interlining': False,
+      'local_arrival': '2023-07-09T10:05:00.000Z',
+      'utc_arrival': '2023-07-09T08:05:00.000Z',
+      'local_departure': '2023-07-09T07:45:00.000Z',
+      'utc_departure': '2023-07-09T06:45:00.000Z'
     }
-  ]
+  ],
+  '_results': 40,
+  'search_params': {
+    'flyFrom_type': 'airport',
+    'to_type': 'airport',
+    'seats': {
+      'passengers': 1,
+      'adults': 1,
+      'children': 0,
+      'infants': 0
+    }
+  },
+  'all_stopover_airports': [],
+  'sort_version': 0
 }
