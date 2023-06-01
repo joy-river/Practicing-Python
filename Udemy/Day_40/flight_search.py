@@ -35,10 +35,17 @@ class FlightSearch:
         datas = []
         for data in city_data:
             self.flight_body["fly_to"] = data["iataCode"]
-            data = requests.get(url=self.kiwi_flight_url, params= self.flight_body, headers= self.kiwi_key).json()
+            f_data = requests.get(url=self.kiwi_flight_url, params=self.flight_body, headers=self.kiwi_key).json()
             try:
-                datas.append(FlightData(data['data'][0]))
+                datas.append(FlightData(f_data['data'][0]))
             except:
-                datas.append(data["city"])
+                self.flight_body["max_stopovers"] = 1
+                f_data = requests.get(url=self.kiwi_flight_url, params=self.flight_body, headers=self.kiwi_key).json()
+                self.flight_body["max_stopovers"] = 0
+                try:
+                    datas.append(FlightData(f_data['data'][0]))
+                except:
+                    datas.append(data["city"])
+
         return datas
 

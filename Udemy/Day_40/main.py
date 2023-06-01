@@ -14,20 +14,18 @@ fs = FlightSearch()
 # nm = NotificationManager()
 
 
+a = [item for item in dm.city_data if item["iataCode"] == ""]
+if len(a) > 0:
+    dm.put_codes(fs.search_city_code(a))
+    dm.get_city_data()
 
-# a = [item for item in dm.city_data if item["iataCode"] == ""]
-# if len(a) > 0:
-#     dm.put_codes(fs.search_city_code(a))
-#     dm.get_city_data()
-#
-# flight_datas = fs.search_flight(dm.city_data)
-#
-# for data in flight_datas:
-#     try:
-#       print(f"{data.cityTo}-{data.cityCodeTo} : ${data.price}")
-#     except:
-#       print("There is No direct Flight from London to {data}")
+flight_datas = fs.search_flight(dm.city_data)
 
+for data in flight_datas:
+    try:
+        print(f"{data.cityTo}-{data.cityCodeTo} : ${data.price}")
+    except:
+        print(f"There is No Flight from London to {data}")
 
-user = User()
-dm.post_user_info(user)
+# user = User()
+# dm.post_user_info(user)
