@@ -1,3 +1,5 @@
+import pprint
+
 import requests
 from flight_data import FlightData
 from datetime import datetime, timedelta
@@ -39,13 +41,12 @@ class FlightSearch:
             try:
                 datas.append(FlightData(f_data['data'][0]))
             except:
-                self.flight_body["max_stopovers"] = 1
+                self.flight_body["max_stopovers"] = 2
                 f_data = requests.get(url=self.kiwi_flight_url, params=self.flight_body, headers=self.kiwi_key).json()
                 self.flight_body["max_stopovers"] = 0
                 try:
-                    datas.append(FlightData(f_data['data'][0]))
+                    datas.append(FlightData(f_data['data'][0], stop_over=2))
                 except:
                     datas.append(data["city"])
-
         return datas
 

@@ -23,9 +23,12 @@ flight_datas = fs.search_flight(dm.city_data)
 
 for data in flight_datas:
     try:
-        print(f"{data.cityTo}-{data.cityCodeTo} : ${data.price}")
+        if data.stop_over == 0:
+            print(f"{data.cityTo}-{data.cityCodeTo} : ${data.price}")
+        else:
+            print(f"There is Flight from London to {data.cityTo} via {[routes['cityFrom'] for routes in data.routes]}. Stopovers : {data.stop_over}")
     except:
-        print(f"There is No Flight from London to {data}")
+        print(f"There is no Flight from London to {data}")
 
 # user = User()
 # dm.post_user_info(user)
