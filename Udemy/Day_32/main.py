@@ -1,8 +1,8 @@
 # # import smtplib
 # # from email.mime.text import MIMEText
 # #
-# # my_email = "dlrkd1122"
-# # password = "Harigaze1!"
+# # my_email = ""
+# # password = ""
 # #
 # #
 # # with smtplib.SMTP("smtp.naver.com", port=587) as connection:
@@ -29,8 +29,8 @@ import smtplib as sm
 from email.mime.text import MIMEText
 from random import choice
 
-naver_username = "dlrkd1122"
-naver_password = "Harigaze1!"
+naver_username = ""
+naver_password = ""
 
 today = dt.datetime.now()
 

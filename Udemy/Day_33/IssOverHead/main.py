@@ -31,8 +31,8 @@ parameters = {
         "formatted": 0,
     },
     "naver_account": {
-        "user": "dlrkd1122",
-        "password": "Harigaze1!"
+        "user": "",
+        "password": ""
     },
     "to_send": {
         "email": [
