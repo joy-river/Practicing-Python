@@ -43,9 +43,6 @@ total_cost = 0
 for i in range(n):
     x, y, z = map(int, input().split())
     planets.append(UF_tree(x, y, z))
-    for j in range(i):
-        cost = planets[j].cost(planets[i])
-        v.put((cost, (i, j)))
 
 while not v.empty():
     tunnel = v.get()
