@@ -1,55 +1,56 @@
+import sys
+input = sys.stdin.readline
 
-from queue import PriorityQueue
+
+def find(i):
+    if parent[i] == i:
+        return i
+    else:
+        parent[i] = find(parent[i])
+        return parent[i]
 
 
-class UF_tree:
-    def __init__(self, x, y, z) -> None:
-        self.x = x
-        self.y = y
-        self.z = z
-        self.rank = 0
-        self.parent = self
+def union(p1, p2):
+    p1_root = find(p1)
+    p2_root = find(p2)
 
-    def cost(self, p):
-        return min(abs(p.x - self.x), abs(p.y - self.y), abs(p.z - self.z))
+    if p1_root == p2_root:
+        return False
 
-    def find(self):
-        if self.parent == self:
-            return self
-        else:
-            self.parent = self.parent.find()
-            return self.parent
-
-    def union(self, node):
-        self_root = self.find()
-        node_root = node.find()
-
-        if self_root == node_root:
-            return
-
-        if self_root.rank < node_root.rank:
-            self_root.parent = node_root
-        else:
-            node_root.parent = self_root
-            if self_root.rank == node_root.rank:
-                self_root.rank += 1
+    if p1_root <= p2_root:
+        parent[p2_root] = p1_root
+        return True
+    else:
+        parent[p1_root] = p2_root
+        return True
 
 
 n = int(input())
 planets = []
-v = PriorityQueue()
+parent = [i for i in range(n)]
+
+v = []
 total_cost = 0
 
 for i in range(n):
-    x, y, z = map(int, input().split())
-    planets.append(UF_tree(x, y, z))
+    x, y, z = list(map(int, input().split()))
+    planets.append((i, x, y, z))
 
-while not v.empty():
-    tunnel = v.get()
-    p1 = planets[tunnel[1][0]]
-    p2 = planets[tunnel[1][1]]
-    if p1.find() != p2.find():
-        p1.union(p2)
+for i in [1, 2, 3]:
+    sort = sorted(planets, key=lambda x: x[i])
+    for a, b in zip(sort[:-1], sort[1:]):
+        v.append((abs(b[i] - a[i]), (a[0], b[0])))
+
+v.sort()
+cnt = 0
+
+for tunnel in v:
+    p1 = tunnel[1][0]
+    p2 = tunnel[1][1]
+    if union(p1, p2):
+        cnt += 1
         total_cost += tunnel[0]
+    if cnt == n - 1:
+        break
 
 print(total_cost)
